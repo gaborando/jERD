@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.gaboragazzo.jerd.controllers.ERDPanel">
+  <grid id="27dc6" binding="mainPane" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="573" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <scrollpane id="6171c" class="com.mxgraph.swing.mxGraphComponent" binding="graphComponent" custom-create="true">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </scrollpane>
+      <toolbar id="7a635">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="20"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="2e838" class="javax.swing.JButton" binding="newButton">
+            <constraints/>
+            <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <icon value="icons/new.gif"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="ee124" class="javax.swing.JButton" binding="openButton">
+            <constraints/>
+            <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <icon value="icons/open.gif"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="eaa81" class="javax.swing.JButton" binding="saveButton">
+            <constraints/>
+            <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <icon value="icons/save.gif"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="78bd2" class="javax.swing.JButton" binding="saveAsButton">
+            <constraints/>
+            <properties>
+              <actionCommand value=""/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <focusPainted value="true"/>
+              <icon value="icons/saveas.gif"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="7d18e" class="javax.swing.JToolBar$Separator">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="61e89" class="javax.swing.JToolBar$Separator">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="961a5" class="javax.swing.JButton" binding="entityButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text resource-bundle="language/strings" key="entity"/>
+            </properties>
+          </component>
+          <component id="f4a5" class="javax.swing.JButton" binding="relationshipButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text resource-bundle="language/strings" key="relationship"/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
+      <component id="e63a7" class="javax.swing.JMenuBar">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <grid id="b1d5a" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <hspacer id="b815b">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="4c868" class="javax.swing.JLabel" binding="fileStats">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="language/strings" key="no.file.selected"/>
+            </properties>
+          </component>
+          <component id="10fa9" class="javax.swing.JLabel" binding="info">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text resource-bundle="language/strings" key="sw.info"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
