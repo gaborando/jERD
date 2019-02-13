@@ -98,7 +98,7 @@ public class EntityCell extends mxCell implements ContextMenuOpenable
 		ArrayList<Keyable> avabileKeys = new ArrayList<>(attributeCells);
 		for(int i = 0; i<getEdgeCount(); i++){
 			mxICell edge = getEdgeAt(i);
-			if(edge instanceof BoundEdge)
+			if(edge instanceof BoundEdge && ((BoundEdge) edge).getSource()!=null && ((BoundEdge) edge).getSource().getParent() instanceof RelationshipCell)
 			{
 				/*
 				Bound bound = ((BoundEdge) edge).getBound();
