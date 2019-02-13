@@ -92,12 +92,16 @@ public class AttributeCell extends mxCell implements ContextMenuOpenable, Keyabl
         if(attributeEdge.getSource() instanceof RelationshipCell)
             ((RelationshipCell)attributeEdge.getSource()).removeAttribute(this);
 
+    }
+
+    public void removeFromView(){
         owner.getModel().beginUpdate();
         removeFromParent();
         attributeEdge.removeFromParent();
         attributeEdge.removeFromTerminal(true);
         attributeEdge.removeFromTerminal(false);
         owner.getModel().endUpdate();
+        owner.refresh();
     }
 
     private void editAttributeAction(ActionEvent actionEvent)

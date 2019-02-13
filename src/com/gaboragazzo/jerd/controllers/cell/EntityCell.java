@@ -2,6 +2,7 @@ package com.gaboragazzo.jerd.controllers.cell;
 
 import com.gaboragazzo.jerd.model.er.Cardinality;
 import com.gaboragazzo.jerd.model.er.Entity;
+import com.gaboragazzo.jerd.model.er.RelBound;
 import com.gaboragazzo.jerd.model.er.Type;
 import com.gaboragazzo.jerd.utils.LanguageUtil;
 import com.mxgraph.model.mxCell;
@@ -40,7 +41,7 @@ public class EntityCell extends mxCell implements ContextMenuOpenable
 
 	private transient mxGraph owner;
 	private ArrayList<GeneralizationCell> generalizationCells = new ArrayList<>();
-	private List<Keyable> pkList;
+	private List<Keyable> pkList = new ArrayList<>();
 	private mxCell pkEdge;
 
 
@@ -98,7 +99,8 @@ public class EntityCell extends mxCell implements ContextMenuOpenable
 		ArrayList<Keyable> avabileKeys = new ArrayList<>(attributeCells);
 		for(int i = 0; i<getEdgeCount(); i++){
 			mxICell edge = getEdgeAt(i);
-			if(edge instanceof BoundEdge && ((BoundEdge) edge).getSource()!=null && ((BoundEdge) edge).getSource().getParent() instanceof RelationshipCell)
+			if(edge instanceof BoundEdge && ((BoundEdge) edge).getBound() instanceof RelBound &&
+					((RelBound) ((BoundEdge) edge).getBound()).getCardinality().equals(Cardinality.ONE_TO_ONE) && ((BoundEdge) edge).getSource()!=null && ((BoundEdge) edge).getSource().getParent() instanceof RelationshipCell)
 			{
 				/*
 				Bound bound = ((BoundEdge) edge).getBound();
@@ -414,6 +416,7 @@ public class EntityCell extends mxCell implements ContextMenuOpenable
 		attributeCells.remove(attributeCell);
 		entity.removeAttribute(attributeCell.getAttribute());
 		removeFromPk(attributeCell);
+		attributeCell.removeFromView();
 	}
 
 	public void setEntityName(String name)
