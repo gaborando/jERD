@@ -8,15 +8,20 @@ import com.google.gson.GsonBuilder;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.handler.mxRubberband;
 import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.gaboragazzo.jerd.graph.ErdGraph;
 import com.gaboragazzo.jerd.utils.Constants;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -38,6 +43,7 @@ public class ERDPanel
 	private JButton saveAsButton;
 	private JLabel fileStats;
 	private JLabel info;
+	private JButton saveImage;
 	private JMenu menu;
 	private final JFileChooser fc;
 
@@ -62,28 +68,43 @@ public class ERDPanel
 
 		Object parent = graph.getDefaultParent();
 
-		fc = new JFileChooser();
-		fc.setFileFilter(new FileFilter()
-		{
-			@Override
-			public boolean accept(File f)
-			{
-				return f.getName().endsWith(LanguageUtil.getResourceBundle().getString("file.extention"));
-			}
-
-			@Override
-			public String getDescription()
-			{
-				return LanguageUtil.getResourceBundle().getString("jerd.descriptor");
-			}
-
-
-		});
+		fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(LanguageUtil.getResourceBundle().getString("jerd.descriptor"), LanguageUtil.getResourceBundle().getString("file.extention"));
+		fc.setFileFilter(filter);
 
 
 
 
 		//mainPane.add(graphComponent);
+		saveImage.addActionListener(e -> saveAsImage());
+	}
+
+	private void saveAsImage()
+	{
+
+		BufferedImage image = mxCellRenderer.createBufferedImage(graph, null, 1, Color.WHITE, true, null);
+		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		jfc.setDialogTitle(LanguageUtil.getResourceBundle().getString("choose.a.directory.to.save.your.file"));
+		jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG", "png");
+		jfc.setFileFilter(filter);
+		int returnValue = jfc.showSaveDialog(null);
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
+			currentFIle = fc.getSelectedFile();
+			if(!currentFIle.getName().endsWith(".png"))
+			{
+				currentFIle = new File(currentFIle.getParentFile(),currentFIle.getName()+".png");
+			}
+			try
+			{
+				ImageIO.write(image, "PNG", currentFIle);
+				JOptionPane.showMessageDialog(mainPane, LanguageUtil.getResourceBundle().getString("file.saved.successfully"), LanguageUtil.getResourceBundle().getString("info"), JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e)
+			{
+				JOptionPane.showMessageDialog(mainPane, e, e.getMessage(), JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 
 	private void openDiagram()
@@ -237,8 +258,12 @@ public class ERDPanel
 				fileWriter.write(json);
 				fileWriter.close();
 				setModified(false);
-			}catch (IOException ignored)
+				if(saveAs)
+					JOptionPane.showMessageDialog(mainPane, LanguageUtil.getResourceBundle().getString("file.saved.successfully"), LanguageUtil.getResourceBundle().getString("info"), JOptionPane.INFORMATION_MESSAGE);
+
+			}catch (IOException e)
 			{
+				JOptionPane.showMessageDialog(mainPane, e, e.getMessage(), JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
