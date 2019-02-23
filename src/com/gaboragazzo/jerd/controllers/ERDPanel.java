@@ -293,23 +293,11 @@ public class ERDPanel {
         graph.getStylesheet().getDefaultVertexStyle().put(mxConstants.STYLE_STROKECOLOR, "#000000");
         graph.getStylesheet().getDefaultVertexStyle().put(mxConstants.STYLE_FONTCOLOR, "#000000");
 
-        sizeCombo = new JComboBox(new Object[]{"6pt", "8pt",
+        sizeCombo = new JComboBox<String>(new String[]{"6pt", "8pt",
                 "9pt", "10pt", "12pt", "14pt", "18pt", "24pt", "30pt", "36pt",
                 "48pt", "60pt"});
-        sizeCombo.setEditable(true);
-        sizeCombo.setMinimumSize(new Dimension(65, 0));
-        sizeCombo.setPreferredSize(new Dimension(65, 0));
-        sizeCombo.setMaximumSize(new Dimension(65, 100));
-
-        sizeCombo.addActionListener(new ActionListener() {
-            /**
-             *
-             */
-            public void actionPerformed(ActionEvent e) {
-                graph.setCellStyles(mxConstants.STYLE_FONTSIZE, sizeCombo
-                        .getSelectedItem().toString().replace("pt", ""));
-            }
-        });
+        sizeCombo.addActionListener(e -> graph.setCellStyles(mxConstants.STYLE_FONTSIZE, sizeCombo
+                .getSelectedItem().toString().replace("pt", "")));
     }
 
     public static void main(String[] args) {
