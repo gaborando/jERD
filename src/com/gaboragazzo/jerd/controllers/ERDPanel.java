@@ -296,8 +296,15 @@ public class ERDPanel {
         sizeCombo = new JComboBox<String>(new String[]{"6pt", "8pt",
                 "9pt", "10pt", "12pt", "14pt", "18pt", "24pt", "30pt", "36pt",
                 "48pt", "60pt"});
-        sizeCombo.addActionListener(e -> graph.setCellStyles(mxConstants.STYLE_FONTSIZE, sizeCombo
-                .getSelectedItem().toString().replace("pt", "")));
+        sizeCombo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                graph.setCellStyles(mxConstants.STYLE_FONTSIZE, sizeCombo
+                        .getSelectedItem().toString().replace("pt", ""));
+                graph.refresh();
+            }
+        });
+        sizeCombo.setSelectedIndex(4);
+
     }
 
     public static void main(String[] args) {
