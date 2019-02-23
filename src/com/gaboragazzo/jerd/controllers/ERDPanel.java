@@ -95,7 +95,7 @@ public class ERDPanel {
                 Graphics g = image.getGraphics();
                 g.setFont(g.getFont().deriveFont(14f));
                 g.setColor(Color.BLACK);
-                g.drawString("Wade with jERD - https://github.com/gaborando/jERD", 10, 10);
+                g.drawString(LanguageUtil.getResourceBundle().getString("wade.with.jerd.https.github.com.gaborando.jerd"), 10, 10);
                 g.dispose();
 
                 ImageIO.write(image, "PNG", currentFIle);
