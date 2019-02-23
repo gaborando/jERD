@@ -14,6 +14,7 @@ public class Constants
 		mxConstants.ARROW_SPACING = 0;
 		mxConstants.ARROW_WIDTH = 30;
 		mxConstants.ARROW_SIZE = 10;
+
 	}
 
 	public static int getNewId(){

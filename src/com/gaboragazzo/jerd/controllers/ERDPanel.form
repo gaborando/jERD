@@ -105,7 +105,8 @@
           <component id="26c7f" class="javax.swing.JComboBox" binding="sizeCombo" custom-create="true">
             <constraints/>
             <properties>
-              <minimumSize width="125" height="30"/>
+              <maximumSize width="30" height="30"/>
+              <minimumSize width="30" height="30"/>
             </properties>
           </component>
           <hspacer id="68104">

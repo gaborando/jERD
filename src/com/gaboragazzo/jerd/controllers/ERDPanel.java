@@ -298,7 +298,7 @@ public class ERDPanel {
                 "48pt", "60pt"});
         sizeCombo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                graph.setCellStyles(mxConstants.STYLE_FONTSIZE, sizeCombo
+                mxConstants.DEFAULT_FONTSIZE = Integer.parseInt(sizeCombo
                         .getSelectedItem().toString().replace("pt", ""));
                 graph.refresh();
             }
