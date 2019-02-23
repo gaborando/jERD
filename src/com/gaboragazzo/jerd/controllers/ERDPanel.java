@@ -87,11 +87,17 @@ public class ERDPanel {
         jfc.setFileFilter(filter);
         int returnValue = jfc.showSaveDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            currentFIle = fc.getSelectedFile();
+            currentFIle = jfc.getSelectedFile();
             if (!currentFIle.getName().endsWith(".png")) {
                 currentFIle = new File(currentFIle.getParentFile(), currentFIle.getName() + ".png");
             }
             try {
+                Graphics g = image.getGraphics();
+                g.setFont(g.getFont().deriveFont(14f));
+                g.setColor(Color.BLACK);
+                g.drawString("Wade with jERD - https://github.com/gaborando/jERD", 10, 10);
+                g.dispose();
+
                 ImageIO.write(image, "PNG", currentFIle);
                 JOptionPane.showMessageDialog(mainPane, LanguageUtil.getResourceBundle().getString("file.saved.successfully"), LanguageUtil.getResourceBundle().getString("info"), JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException e) {
