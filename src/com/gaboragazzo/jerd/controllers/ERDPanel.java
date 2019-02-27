@@ -218,7 +218,7 @@ public class ERDPanel {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 currentFIle = fc.getSelectedFile();
                 if (!currentFIle.getName().endsWith(LanguageUtil.getResourceBundle().getString("file.extention"))) {
-                    currentFIle = new File(currentFIle.getParentFile(), currentFIle.getName() + LanguageUtil.getResourceBundle().getString("file.extention"));
+                    currentFIle = new File(currentFIle.getParentFile(), currentFIle.getName() +'.'+ LanguageUtil.getResourceBundle().getString("file.extention"));
                     //file.createNewFile();
                 }
             }
